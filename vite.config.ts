@@ -1,11 +1,30 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import fs from 'fs';
 import path from 'path';
-import {defineConfig} from 'vite';
+import {defineConfig, Plugin} from 'vite';
+
+function cloudflareSpaPlugin(): Plugin {
+  return {
+    name: 'cloudflare-spa-fallback',
+    closeBundle() {
+      try {
+        const outDir = path.resolve(import.meta.dirname, 'dist');
+        const indexPath = path.join(outDir, 'index.html');
+        const fallbackPath = path.join(outDir, '200.html');
+        if (fs.existsSync(indexPath)) {
+          fs.copyFileSync(indexPath, fallbackPath);
+        }
+      } catch (err) {
+        console.warn('Could not generate 200.html fallback:', err);
+      }
+    },
+  };
+}
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), cloudflareSpaPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, '.'),
