@@ -1,0 +1,8 @@
+{
+  "name": "Wangarawa Global Technology Limited",
+  "description": "Official corporate portal and CMS for Wangarawa Global Technology Limited (CAC RC No. 9161655) - Empowering the next generation of innovators through AI education, digital skills, software engineering, and community impact in Dutse, Jigawa State and Northern Nigeria.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
