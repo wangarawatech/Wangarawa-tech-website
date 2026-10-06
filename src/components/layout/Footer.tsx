@@ -196,7 +196,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span aria-hidden="true">·</span>
             <button
               onClick={() => {
-                onNavigate('/staff/login');
+                onNavigate('/admin');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="text-slate-500 hover:text-slate-300 transition-colors inline-flex items-center gap-1"

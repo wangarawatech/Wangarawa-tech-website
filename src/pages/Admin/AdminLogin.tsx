@@ -54,7 +54,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
           {error && (
             <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>Invalid admin password. Try 'wangarawa2026' or use the quick access button.</span>
+              <span>Invalid administrator password. Access is restricted to authorized staff.</span>
             </div>
           )}
 
@@ -67,7 +67,8 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
               <input
                 type="password"
                 required
-                placeholder="Enter password..."
+                autoFocus
+                placeholder="Enter authorized password..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder:text-slate-500 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 outline-none"
@@ -78,25 +79,19 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
               type="submit"
               className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold transition-all flex items-center justify-center gap-2 shadow"
             >
-              <span>Unlock Admin Dashboard</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-4 h-4" />
+              <span>Authenticate & Enter CMS</span>
             </button>
           </form>
 
-          {/* Quick Access Helper for Evaluators and Company Staff */}
-          <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
-            <p className="text-[11px] font-bold text-amber-400 uppercase tracking-wide">
-              Authorized Demo Credentials
-            </p>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              Default password: <code className="text-white font-mono bg-slate-800 px-1 py-0.5 rounded">wangarawa2026</code>
-            </p>
-            <button
-              onClick={() => fillDemoPassword('wangarawa2026')}
-              className="w-full py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-slate-200 transition-colors"
-            >
-              1-Click Demo Sign In
-            </button>
+          <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-[11px] text-slate-400 leading-relaxed flex items-start gap-2.5">
+            <Key className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold text-slate-300">Protected Corporate System</p>
+              <p className="text-slate-500 mt-0.5">
+                Authorized staff of Wangarawa Global Technology Limited. Contact the Director General or Tech Lead if you need credential assistance.
+              </p>
+            </div>
           </div>
         </div>
 

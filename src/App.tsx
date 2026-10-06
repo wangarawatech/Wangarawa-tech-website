@@ -14,23 +14,74 @@ import { AdminDashboard } from './pages/Admin/AdminDashboard';
 import { db } from './services/db';
 import { MessageCircle } from 'lucide-react';
 
+// Helper to parse route from browser pathname or hash
+function resolveCurrentRoute(): string {
+  if (typeof window === 'undefined') return '/';
+
+  // 1. Check window.location.pathname
+  let pathname = (window.location.pathname || '').trim();
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    pathname = pathname.slice(0, -1);
+  }
+
+  const lowerPath = pathname.toLowerCase();
+  if (lowerPath === '/admin' || lowerPath.startsWith('/admin/')) {
+    return '/admin';
+  }
+  if (lowerPath === '/staff' || lowerPath === '/staff/login' || lowerPath === '/login') {
+    return '/admin';
+  }
+
+  // 2. Check window.location.hash fallback (supports #/admin or #admin)
+  const hash = (window.location.hash || '').trim().toLowerCase();
+  if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin') || hash.startsWith('#admin')) {
+    return '/admin';
+  }
+  if (hash === '#/staff' || hash === '#/staff/login') {
+    return '/admin';
+  }
+
+  const validPaths = ['/about', '/services', '/programs', '/projects', '/news', '/team', '/contact'];
+  for (const p of validPaths) {
+    if (lowerPath === p || lowerPath.startsWith(`${p}/`)) {
+      return p;
+    }
+    if (hash === `#${p}` || hash === `#${p}/` || hash.startsWith(`#${p}`)) {
+      return p;
+    }
+  }
+
+  return pathname || '/';
+}
+
 export default function App() {
-  const [currentPath, setCurrentPath] = useState<string>('/');
+  const [currentPath, setCurrentPath] = useState<string>(resolveCurrentRoute);
   const [selectedProjectSlug, setSelectedProjectSlug] = useState<string | null>(null);
   const [selectedArticleSlug, setSelectedArticleSlug] = useState<string | null>(null);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(db.isAdminLoggedIn());
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => db.isAdminLoggedIn());
 
-  // Listen for browser back/forward or hash changes if any
+  // Bidirectional route sync across browser history (popstate, pushstate, hashchange)
   useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname || '/';
-      if (path.startsWith('/admin')) {
-        setCurrentPath('/admin');
-      }
+    const handleUrlChange = () => {
+      const detected = resolveCurrentRoute();
+      setCurrentPath(detected);
+      setIsAdminLoggedIn(db.isAdminLoggedIn());
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+
+    // Initial check on mount
+    const initial = resolveCurrentRoute();
+    if (initial !== currentPath) {
+      setCurrentPath(initial);
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, [currentPath]);
 
   // Update dynamic document title based on current page
   useEffect(() => {
@@ -53,30 +104,45 @@ export default function App() {
     setCurrentPath(path);
     setSelectedProjectSlug(null);
     setSelectedArticleSlug(null);
+    if (typeof window !== 'undefined' && window.location.pathname !== path) {
+      window.history.pushState(null, '', path);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectProject = (slug: string | null) => {
     setSelectedProjectSlug(slug);
     setCurrentPath('/projects');
+    if (typeof window !== 'undefined' && window.location.pathname !== '/projects') {
+      window.history.pushState(null, '', '/projects');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectArticle = (slug: string | null) => {
     setSelectedArticleSlug(slug);
     setCurrentPath('/news');
+    if (typeof window !== 'undefined' && window.location.pathname !== '/news') {
+      window.history.pushState(null, '', '/news');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAdminLoginSuccess = () => {
     setIsAdminLoggedIn(true);
     setCurrentPath('/admin');
+    if (typeof window !== 'undefined' && window.location.pathname !== '/admin') {
+      window.history.pushState(null, '', '/admin');
+    }
   };
 
   const handleAdminLogout = () => {
     db.logoutAdmin();
     setIsAdminLoggedIn(false);
     setCurrentPath('/');
+    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      window.history.pushState(null, '', '/');
+    }
   };
 
   // If in Admin route

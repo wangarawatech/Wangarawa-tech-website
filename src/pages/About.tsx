@@ -158,7 +158,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5 space-y-4">
             <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-4/3 bg-slate-900">
               <img
-                src="/src/assets/images/hero_wangarawa_tech_1791310982051.jpg"
+                src="/images/hero_wangarawa_tech.jpg"
                 alt="Wangarawa Tech Lab and Students"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
@@ -166,7 +166,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200 aspect-16/9 bg-slate-900">
               <img
-                src="/src/assets/images/office_innovation_hub_1791311014618.jpg"
+                src="/images/office_innovation_hub.jpg"
                 alt="Wangarawa Tech Office Interior"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"

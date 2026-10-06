@@ -9,7 +9,7 @@ export const PartnersManager: React.FC = () => {
 
   const [form, setForm] = useState<Partial<Partner>>({
     name: '',
-    logoUrl: '/src/assets/images/office_innovation_hub_1791311014618.jpg',
+    logoUrl: '/images/office_innovation_hub.jpg',
     type: 'Government',
     published: true,
   });
@@ -29,7 +29,7 @@ export const PartnersManager: React.FC = () => {
     const p: Partner = {
       id: `part-${Date.now()}`,
       name: form.name,
-      logoUrl: form.logoUrl || '/src/assets/images/office_innovation_hub_1791311014618.jpg',
+      logoUrl: form.logoUrl || '/images/office_innovation_hub.jpg',
       type: (form.type as any) || 'Government',
       published: true,
     };

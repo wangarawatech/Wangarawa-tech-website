@@ -170,6 +170,29 @@ export const SettingsManager: React.FC = () => {
             </div>
           </div>
 
+          {/* Admin Security Section */}
+          <div className="pt-4 border-t space-y-3">
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-amber-500" />
+              <span>Staff / Administrator Access Password</span>
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-slate-700">Custom Admin Password</label>
+                <input
+                  type="password"
+                  placeholder="Set custom password (leave blank to use company default)..."
+                  value={settings.adminPassword || ''}
+                  onChange={(e) => setSettings({ ...settings, adminPassword: e.target.value })}
+                  className="w-full px-3.5 py-2 text-xs rounded-lg border border-slate-300 outline-none font-mono"
+                />
+                <p className="text-[10px] text-slate-500">
+                  Changing this saves a custom private password for /admin. Can also be set via VITE_ADMIN_PASSWORD environment variable.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Cloud Integrations Section */}
           <div className="pt-6 border-t space-y-4">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide">

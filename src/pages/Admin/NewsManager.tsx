@@ -11,7 +11,7 @@ export const NewsManager: React.FC = () => {
   const [form, setForm] = useState<Partial<NewsArticle>>({
     title: '',
     slug: '',
-    featuredImage: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
+    featuredImage: '/images/project_ai_youth_bootcamp.jpg',
     excerpt: '',
     content: '',
     author: 'Wangarawa Tech',
@@ -34,7 +34,7 @@ export const NewsManager: React.FC = () => {
     setForm({
       title: '',
       slug: '',
-      featuredImage: '/src/assets/images/office_innovation_hub_1791311014618.jpg',
+      featuredImage: '/images/office_innovation_hub.jpg',
       excerpt: '',
       content: '',
       author: 'Wangarawa Tech Editorial',
@@ -67,7 +67,7 @@ export const NewsManager: React.FC = () => {
       id: editingId || `news-${Date.now()}`,
       title: form.title || 'Untitled Post',
       slug,
-      featuredImage: form.featuredImage || '/src/assets/images/hero_wangarawa_tech_1791310982051.jpg',
+      featuredImage: form.featuredImage || '/images/hero_wangarawa_tech.jpg',
       excerpt: form.excerpt || '',
       content: form.content || '',
       author: form.author || 'Wangarawa Tech',

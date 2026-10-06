@@ -219,7 +219,7 @@ export const Home: React.FC<HomeProps> = ({
           <div className="lg:col-span-5 relative">
             <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 aspect-4/3 relative">
               <img
-                src="/src/assets/images/office_innovation_hub_1791311014618.jpg"
+                src="/images/office_innovation_hub.jpg"
                 alt="Wangarawa Tech Centre in Dutse"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"

@@ -11,7 +11,7 @@ export const HomepageManager: React.FC = () => {
   const [form, setForm] = useState<Partial<HeroSlide>>({
     headline: '',
     subheadline: '',
-    bgImageUrl: '/src/assets/images/hero_wangarawa_tech_1791310982051.jpg',
+    bgImageUrl: '/images/hero_wangarawa_tech.jpg',
     primaryCtaText: 'Explore Our Work',
     primaryCtaLink: '#projects',
     secondaryCtaText: 'Work With Us',
@@ -32,7 +32,7 @@ export const HomepageManager: React.FC = () => {
     setForm({
       headline: '',
       subheadline: '',
-      bgImageUrl: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
+      bgImageUrl: '/images/project_ai_youth_bootcamp.jpg',
       primaryCtaText: 'Explore Our Work',
       primaryCtaLink: '#projects',
       secondaryCtaText: 'Work With Us',
@@ -58,7 +58,7 @@ export const HomepageManager: React.FC = () => {
       id: editingSlide ? editingSlide.id : `slide-${Date.now()}`,
       headline: form.headline || '',
       subheadline: form.subheadline || '',
-      bgImageUrl: form.bgImageUrl || '/src/assets/images/hero_wangarawa_tech_1791310982051.jpg',
+      bgImageUrl: form.bgImageUrl || '/images/hero_wangarawa_tech.jpg',
       bgVideoUrl: form.bgVideoUrl || '',
       primaryCtaText: form.primaryCtaText || 'Explore Our Work',
       primaryCtaLink: form.primaryCtaLink || '#projects',
@@ -152,7 +152,7 @@ export const HomepageManager: React.FC = () => {
                   value={form.bgImageUrl || ''}
                   onChange={(e) => setForm({ ...form, bgImageUrl: e.target.value })}
                   className="w-full px-3.5 py-2 text-xs rounded-lg border border-slate-300 outline-none"
-                  placeholder="/src/assets/images/... or Cloudinary URL"
+                  placeholder="/images/... or Cloudinary URL"
                 />
               </div>
 

@@ -26,7 +26,7 @@ export const ProjectsManager: React.FC = () => {
     slug: '',
     shortDescription: '',
     fullDescription: '',
-    coverImage: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
+    coverImage: '/images/project_ai_youth_bootcamp.jpg',
     images: [],
     videos: [],
     projectDate: '',
@@ -59,8 +59,8 @@ export const ProjectsManager: React.FC = () => {
       slug: '',
       shortDescription: '',
       fullDescription: '',
-      coverImage: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
-      images: ['/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg'],
+      coverImage: '/images/project_ai_youth_bootcamp.jpg',
+      images: ['/images/project_ai_youth_bootcamp.jpg'],
       videos: [],
       projectDate: 'April 2026',
       location: 'Dutse, Jigawa State',
@@ -102,7 +102,7 @@ export const ProjectsManager: React.FC = () => {
       slug,
       shortDescription: form.shortDescription || '',
       fullDescription: form.fullDescription || '',
-      coverImage: form.coverImage || '/src/assets/images/hero_wangarawa_tech_1791310982051.jpg',
+      coverImage: form.coverImage || '/images/hero_wangarawa_tech.jpg',
       images: form.images || [],
       videos: form.videos || [],
       projectDate: form.projectDate || '2026',
@@ -312,11 +312,11 @@ export const ProjectsManager: React.FC = () => {
                   value={form.coverImage || ''}
                   onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
                   className="flex-1 px-3.5 py-2 text-xs rounded-lg border border-slate-300 outline-none"
-                  placeholder="/src/assets/images/... or Cloudinary URL"
+                  placeholder="/images/... or Cloudinary URL"
                 />
                 <button
                   type="button"
-                  onClick={() => setForm({ ...form, coverImage: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg' })}
+                  onClick={() => setForm({ ...form, coverImage: '/images/project_ai_youth_bootcamp.jpg' })}
                   className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-medium"
                 >
                   Use Default Image

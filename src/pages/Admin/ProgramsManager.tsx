@@ -11,7 +11,7 @@ export const ProgramsManager: React.FC = () => {
   const [form, setForm] = useState<Partial<Program>>({
     title: '',
     description: '',
-    coverImage: '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
+    coverImage: '/images/project_ai_youth_bootcamp.jpg',
     startDate: 'May 1, 2026',
     endDate: 'June 15, 2026',
     location: 'Wangarawa Tech Lab, Dutse, Jigawa State',
@@ -37,7 +37,7 @@ export const ProgramsManager: React.FC = () => {
     setForm({
       title: '',
       description: '',
-      coverImage: '/src/assets/images/project_digital_skills_training_1791311004498.jpg',
+      coverImage: '/images/project_digital_skills_training.jpg',
       startDate: 'May 15, 2026',
       endDate: 'June 30, 2026',
       location: 'No. 003 Wangara Shopping Complex, Sabuwar Takur, Dutse',
@@ -64,7 +64,7 @@ export const ProgramsManager: React.FC = () => {
       id: editingId || `prog-${Date.now()}`,
       title: form.title || 'Untitled Program',
       description: form.description || '',
-      coverImage: form.coverImage || '/src/assets/images/project_ai_youth_bootcamp_1791310992784.jpg',
+      coverImage: form.coverImage || '/images/project_ai_youth_bootcamp.jpg',
       startDate: form.startDate || '',
       endDate: form.endDate || '',
       location: form.location || 'Dutse, Jigawa State',

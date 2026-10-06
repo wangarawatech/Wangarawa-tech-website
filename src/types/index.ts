@@ -158,4 +158,5 @@ export interface SiteSettings {
   supabaseAnonKey?: string;
   cloudinaryCloudName?: string;
   cloudinaryUploadPreset?: string;
+  adminPassword?: string;
 }
